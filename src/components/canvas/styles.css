@@ -1,0 +1,46 @@
+:root {
+  --container-width-max: 80rem;
+  --container-height-max: 80rem;
+  --container-width: 40rem;
+  --container-height: 40rem;
+  --item-height-min: 5rem;
+  --item-width-min: 5rem;
+  --gap-size: 0.8rem;
+  --canvas-background: rgb(255, 231, 203);
+}
+
+.Canvas {
+  display: grid;
+  padding: var(--gap-size);
+  gap: var(--gap-size);
+  width: var(--container-width);
+  height: var(--container-height);
+  max-width: var(--container-width-max);
+  background-color: var(--canvas-background);
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.image-container {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border: 3px solid rgb(103, 113, 228);
+  resize: both;
+  max-height: 40rem;
+  min-width: var(--item-width-min);
+  pointer-events: none;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.grid-image {
+  height: auto;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.selected-grid {
+  border: 5px solid rgb(136, 187, 254);
+  border-radius: 6px;
+}

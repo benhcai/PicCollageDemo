@@ -1,0 +1,93 @@
+:root {
+  --border-color: rgb(34, 180, 126);
+  --border-color-active: rgb(115, 229, 163);
+}
+
+.line {
+  width: 500px;
+  height: 2px;
+  background-color: green;
+}
+
+.container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  justify-content: center;
+  width: 500px;
+  max-width: 500px;
+  background-color: rgb(47, 47, 50);
+  border-radius: 6px;
+  padding: var(--gap-size);
+}
+
+.item {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  min-width: 50px;
+  background-color: rgb(255, 245, 253);
+}
+
+.handle {
+  z-index: 1;
+  position: absolute;
+  width: 6px;
+  height: 50px;
+  background-color: var(--border-color);
+  cursor: pointer;
+}
+
+.handle:hover {
+  background-color: var(--border-color-active);
+}
+
+.handle-left {
+  width: 6px;
+  height: 50px;
+
+  /* top: 25px; */
+  bottom: -30px;
+  left: -8px;
+}
+
+.handle-leftright {
+  width: 6px;
+  height: 50px;
+
+  /* top: 25px; */
+  bottom: -30px;
+  right: -8px;
+}
+
+.handle-right {
+  width: 6px;
+  height: 50px;
+
+  /* top: 25px; */
+  bottom: -30px;
+  right: -8px;
+}
+
+.handle-bottom {
+  width: 50px;
+  height: 6px;
+
+  bottom: -8px;
+  /* left: -8px; */
+  right: 0;
+  right: -30px;
+  cursor: pointer;
+}
+
+.contained-img {
+  max-width: 100%;
+  max-height: 100%;
+  user-select: none;
+}
+
+.item-contained {
+  height: 100%;
+  overflow: hidden;
+}
