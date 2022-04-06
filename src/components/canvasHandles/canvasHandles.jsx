@@ -81,6 +81,8 @@ const Canvas = (props) => {
     window.addEventListener("mouseup", handleMouseUp);
   };
 
+  console.log("hadl");
+
   return (
     <div className="Canvas-container">
       <div className="line"></div>

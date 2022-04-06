@@ -7,7 +7,7 @@ import setSelectedHorizontal from "../canvas/hooks/setSelectedHorizontal";
 import setSelectedVertical from "../canvas/hooks/setSelectedVertical";
 import ColorPicker from "../colorPicker/colorPicker";
 
-const CanvasOptionsPanel = ({ val, selectedGrid, grids, setGridProps, canvasRef }) => {
+const CanvasOptionsPanel = ({ selectedGrid, grids, setGridProps, canvasRef }) => {
   // Handle Rotation slide
   const [rotationVal, setRotationVal] = useState(0);
   const handleRotationChange = (val) => {
@@ -76,8 +76,8 @@ const CanvasOptionsPanel = ({ val, selectedGrid, grids, setGridProps, canvasRef 
         <Slider
           value={horizontalVal}
           onChange={handleHorizontalChange}
-          min={-200}
-          max={200}
+          min={-500}
+          max={500}
           step={1}
           className={"options-slider"}
         ></Slider>
@@ -88,8 +88,8 @@ const CanvasOptionsPanel = ({ val, selectedGrid, grids, setGridProps, canvasRef 
         <Slider
           value={verticalVal}
           onChange={handleVerticalChange}
-          min={-200}
-          max={200}
+          min={-500}
+          max={500}
           step={1}
           className={"options-slider"}
         ></Slider>

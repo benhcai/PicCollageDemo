@@ -13,9 +13,7 @@ const Canvas = (props) => {
       gridTemplateRows: "auto auto",
       gridTemplateColumns: "auto auto",
     });
-    const imagesReduced = images.slice(0, 4);
-    setImages(imagesReduced);
-  }, [images]);
+  }, []);
 
   // Setup references to each image in the grid
   const grid0 = useRef();

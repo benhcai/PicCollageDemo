@@ -25,6 +25,7 @@
   /* background-color: rgb(115, 115, 115); */
   width: fit-content;
   padding: 0.5rem;
+  box-shadow: var(--box-shadow);
 }
 
 .CEC-selected-images {
