@@ -1,5 +1,5 @@
 import "./CanvasIndex.styles.css";
-import { useEffect, useRef, useState, Fragment } from "react";
+import React, { useMemo, useRef, useState, Fragment } from "react";
 import { handleMouseDownLeft } from "./helpers/handleMouseDownLeft";
 import { handleMouseDownLeftRight } from "./helpers/handleMouseDownLeftRight";
 import { handleMouseDownRight } from "./helpers/handleMouseDownRight";
@@ -7,36 +7,24 @@ import { handleMouseDownBottom } from "./helpers/handleMouseDownBottom";
 import CanvasOptionsPanelIndex from "../CanvasOptionsPanelIndex/CanvasOptionsPanelIndex.component";
 
 // This is the updated Canvas element. Instead of referencing properties based on ref name, we use index.
-// This assumes the order in the image array is irrelevant and consistent.
-
-// Refactor gridXProps into single state object
+// This assumes the order in the image array is consistent or irrelevant (solvable).
 
 const CanvasHandles = ({ collageStyle, images }) => {
-  const grid0 = useRef();
-  const grid1 = useRef();
-  const grid2 = useRef();
-  const grid3 = useRef();
-
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Setup slider state store
-  const createInitialState = (initialState) => ({ ...initialState });
+  // Setup grid State store for sliders. Store array in useState and reference items by index.
+  const createStateObject = (initialState) => ({ ...initialState });
   const createGridState = (amount, initialGridProperties) => {
     const store = [];
     for (let i = 0; i < amount; i++) {
-      store.push(createInitialState(initialGridProperties));
+      store.push(createStateObject(initialGridProperties));
     }
     return store;
   };
   const gridElements = 4;
   const initialGridProperties = { angle: 0, zoom: 1, horizontal: 0, vertical: 0 };
   const [gridProps, setGridProps] = useState(createGridState(gridElements, initialGridProperties));
-  console.log(gridProps);
 
-  // Pass this to the slider
-  // Slider sets its value based on selectedIndex and gridProps
-  // Changing the slider changes the gridProps state in Canvas
-  // Div's style attribute reads the state and updates.
   const setGridFeature = (property, val) => {
     const setStore = setGridProps;
     const index = selectedIndex;
@@ -47,31 +35,29 @@ const CanvasHandles = ({ collageStyle, images }) => {
     });
   };
 
-  // Setup state for grid items
-  const grids = { grid0, grid1, grid2, grid3 };
-  const gridRefs = [grid0, grid1, grid2, grid3];
+  // Setup Refs for each grid. These will be used to do handle calculations for grid resizing.
+  const gridRefsMemo = useMemo(() => {
+    return gridProps.map(() => React.createRef());
+  }, [gridProps]);
 
-  const handleGridClick = (index) => {
-    setSelectedIndex(index);
-  };
-
-  const makeGridHandles = (index) => {
+  const makeGridHandles2x2 = (index) => {
     if (index === 0) {
       return (
         <Fragment>
           <div
             className="handle handle-left"
             onMouseDown={(e) => {
-              handleMouseDownLeft(e, grids);
+              // handleMouseDownLeft(e, grids);
+              handleMouseDownLeft(e, gridRefsMemo);
             }}
           ></div>
           <div
-            className="handle  handle-leftright"
-            onMouseDown={(e) => handleMouseDownLeftRight(e, grids)}
+            className="handle handle-leftright"
+            onMouseDown={(e) => handleMouseDownLeftRight(e, gridRefsMemo)}
           ></div>
           <div
-            className="handle  handle-bottom"
-            onMouseDown={(e) => handleMouseDownBottom(e, grids)}
+            className="handle handle-bottom"
+            onMouseDown={(e) => handleMouseDownBottom(e, gridRefsMemo)}
           ></div>
         </Fragment>
       );
@@ -81,11 +67,15 @@ const CanvasHandles = ({ collageStyle, images }) => {
         <Fragment>
           <div
             className="handle handle-right"
-            onMouseDown={(e) => handleMouseDownRight(e, grids)}
+            onMouseDown={(e) => handleMouseDownRight(e, gridRefsMemo)}
           ></div>
         </Fragment>
       );
     }
+  };
+
+  const handleGridClick = (index) => {
+    setSelectedIndex(index);
   };
 
   const handleStyle = (style, index) => {
@@ -108,7 +98,7 @@ const CanvasHandles = ({ collageStyle, images }) => {
       return (
         <div
           className={`CanvasHandles--item ${index}`}
-          ref={gridRefs[index]}
+          ref={gridRefsMemo[index]}
           key={String(images[index])}
         >
           <div className={`item-contained`} style={style} onClick={() => handleGridClick(index)}>
@@ -119,13 +109,13 @@ const CanvasHandles = ({ collageStyle, images }) => {
               style={handleStyle({}, index)}
             />
           </div>
-          {makeGridHandles(index)}
+          {makeGridHandles2x2(index)}
         </div>
       );
     });
   };
 
-  // Setup state for sliders
+  // Setup state for color pickers
   const [backgroundColor, setBackgroundColor] = useState("#000000");
   const [gridsColor, setGridsColor] = useState("#000000");
 
@@ -137,7 +127,6 @@ const CanvasHandles = ({ collageStyle, images }) => {
       >
         {makeGrids(images)}
       </div>
-      {JSON.stringify(gridProps)}
       <CanvasOptionsPanelIndex
         selectedIndex={selectedIndex}
         gridProps={gridProps}

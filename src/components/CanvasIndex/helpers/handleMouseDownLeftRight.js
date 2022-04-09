@@ -1,5 +1,5 @@
 export const handleMouseDownLeftRight = (e, grids) => {
-  const { grid0, grid1, grid2, grid3 } = grids;
+  const [grid0, grid1, grid2, grid3] = grids;
   const prevX = e.clientX;
   const initialWidth0 = grid0.current.offsetWidth;
   const initialWidth1 = grid1.current.offsetWidth;
