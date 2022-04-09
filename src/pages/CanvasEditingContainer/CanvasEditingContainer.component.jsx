@@ -59,10 +59,10 @@ const CanvasEditingContainer = ({ chosenImages }) => {
         </Button>
       </ButtonGroup>
       <ButtonGroup className="grid-styles" initialActive={0}>
-        <Button id="1" onClick={() => setCanvasEditor("old")}>
+        <Button id="0" onClick={() => setCanvasEditor("old")}>
           Old Canvas Editor
         </Button>
-        <Button id="2" onClick={() => setCanvasEditor("new")}>
+        <Button id="1" onClick={() => setCanvasEditor("new")}>
           New Canvas Editor
         </Button>
       </ButtonGroup>

@@ -14,8 +14,6 @@ function App() {
   const generateView = (view) => {
     if (view === "ImagePicker") return <ImagePicker handleImages={setImages} />;
     if (view === "CanvasEditingContainer") return <CanvasEditingContainer chosenImages={images} />;
-    // if (view === "ResizableGrid") return <CanvasHandlesOld images={images} />;
-    // if (view === "CanvasHandlesEdit") return <CanvasHandlesEdit images={images} />;
   };
 
   return (
@@ -29,8 +27,6 @@ function App() {
           Choose Images
         </Button>
         <Button onClick={() => setView("CanvasEditingContainer")}>Edit Images</Button>
-        {/* <Button onClick={() => setView("ResizableGrid")}>Grid With Handles</Button> */}
-        {/* <Button onClick={() => setView("CanvasHandlesEdit")}>Grid With Handles And Edits</Button> */}
       </ButtonGroup>
       {generateView(view)}
     </div>
