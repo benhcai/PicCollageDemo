@@ -1,10 +1,11 @@
 import "./App.css";
 import { useState } from "react";
-import Button from "./components/button/button";
-import ButtonGroup from "./components/button/button-group/buttongroup";
-import ImagePicker from "./pages/imagepicker/imagepicker";
-import CanvasEditingContainer from "./pages/canvasEditingContainer/canvasEditingContainer";
-import CanvasNewGrid from "./components/canvasHandles/canvasHandles";
+import Button from "./components/Button/Button.component";
+import ButtonGroup from "./components/Button/ButtonGroup/ButtonGroup.component";
+import ImagePicker from "./pages/ImagePicker/ImagePicker.component";
+import CanvasEditingContainer from "./pages/CanvasEditingContainer/CanvasEditingContainer.component";
+// import CanvasHandlesOld from "./components/CanvasHandlesAndEdit/helpers/_CanvasHandles.old/CanvasHandles/CanvasHandles.component";
+// import CanvasHandlesEdit from "./components/CanvasHandlesAndEdit/CanvasHandlesAndEdit.component";
 
 function App() {
   const [view, setView] = useState("ImagePicker");
@@ -12,8 +13,9 @@ function App() {
 
   const generateView = (view) => {
     if (view === "ImagePicker") return <ImagePicker handleImages={setImages} />;
-    if (view === "CanvasEditingContainer") return <CanvasEditingContainer images={images} />;
-    if (view === "ResizableGrid") return <CanvasNewGrid images={images} />;
+    if (view === "CanvasEditingContainer") return <CanvasEditingContainer chosenImages={images} />;
+    // if (view === "ResizableGrid") return <CanvasHandlesOld images={images} />;
+    // if (view === "CanvasHandlesEdit") return <CanvasHandlesEdit images={images} />;
   };
 
   return (
@@ -22,10 +24,13 @@ function App() {
         <h1 className="title">PicCollage Demo App</h1>
         <p className="author">Benjamin Cai</p>
       </div>
-      <ButtonGroup className="selector">
-        <Button onClick={() => setView("ImagePicker")}>Choose Images</Button>
+      <ButtonGroup className="selector" initialActive={0}>
+        <Button onClick={() => setView("ImagePicker")} active={true}>
+          Choose Images
+        </Button>
         <Button onClick={() => setView("CanvasEditingContainer")}>Edit Images</Button>
-        <Button onClick={() => setView("ResizableGrid")}>Grid With Handles</Button>
+        {/* <Button onClick={() => setView("ResizableGrid")}>Grid With Handles</Button> */}
+        {/* <Button onClick={() => setView("CanvasHandlesEdit")}>Grid With Handles And Edits</Button> */}
       </ButtonGroup>
       {generateView(view)}
     </div>

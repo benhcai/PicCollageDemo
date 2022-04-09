@@ -1,0 +1,13 @@
+.CanvasOptionsPanel {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.canvas-options {
+}
+
+.options-slider {
+  width: 40%;
+}
