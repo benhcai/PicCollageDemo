@@ -2,7 +2,7 @@
 
 Author: Benjamin Cai
 
-Live demo:
+Live demo: https://bit.ly/benjamin-cai-pic-collage-demo
 
 ## Steps
 
