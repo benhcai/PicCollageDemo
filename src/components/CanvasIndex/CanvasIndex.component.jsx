@@ -1,4 +1,4 @@
-import "./CanvasHandlesAndEditIndex.styles.css";
+import "./CanvasIndex.styles.css";
 import { useEffect, useRef, useState, Fragment } from "react";
 import { handleMouseDownLeft } from "./helpers/handleMouseDownLeft";
 import { handleMouseDownLeftRight } from "./helpers/handleMouseDownLeftRight";
@@ -9,46 +9,50 @@ import CanvasOptionsPanelIndex from "../CanvasOptionsPanelIndex/CanvasOptionsPan
 // This is the updated Canvas element. Instead of referencing properties based on ref name, we use index.
 // This assumes the order in the image array is irrelevant and consistent.
 
+// Refactor gridXProps into single state object
+
 const CanvasHandles = ({ collageStyle, images }) => {
   const grid0 = useRef();
   const grid1 = useRef();
   const grid2 = useRef();
   const grid3 = useRef();
 
-  // use name as id or simply a number corresponding to index?
-  // change to numbers, created with loop through grid object
-  // make grid object an array
-  // make dependends (angle selectors...) based on id instead of name id
-  grid0.id = "grid0";
-  grid1.id = "grid1";
-  grid2.id = "grid2";
-  grid3.id = "grid3";
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const [selectedIndex, setSelectedIndex] = useState();
+  // Setup slider state store
+  const createInitialState = (initialState) => ({ ...initialState });
+  const createGridState = (amount, initialGridProperties) => {
+    const store = [];
+    for (let i = 0; i < amount; i++) {
+      store.push(createInitialState(initialGridProperties));
+    }
+    return store;
+  };
+  const gridElements = 4;
+  const initialGridProperties = { angle: 0, zoom: 1, horizontal: 0, vertical: 0 };
+  const [gridProps, setGridProps] = useState(createGridState(gridElements, initialGridProperties));
+  console.log(gridProps);
+
+  // Pass this to the slider
+  // Slider sets its value based on selectedIndex and gridProps
+  // Changing the slider changes the gridProps state in Canvas
+  // Div's style attribute reads the state and updates.
+  const setGridFeature = (property, val) => {
+    const setStore = setGridProps;
+    const index = selectedIndex;
+    setStore((prevStore) => {
+      const newStore = [...prevStore];
+      newStore[index][property] = val;
+      return newStore;
+    });
+  };
 
   // Setup state for grid items
-  const initialPropState = { angle: 0, zoom: 1, horizontal: 0, vertical: 0 };
-  const [grid0Props, setgrid0Props] = useState(initialPropState);
-  const [grid1Props, setgrid1Props] = useState(initialPropState);
-  const [grid2Props, setgrid2Props] = useState(initialPropState);
-  const [grid3Props, setgrid3Props] = useState(initialPropState);
-
   const grids = { grid0, grid1, grid2, grid3 };
-  const gridsId = [grid0, grid1, grid2, grid3];
-  const gridPropsId = [grid0Props, grid1Props, grid2Props, grid3Props];
-  const setGridProps = { setgrid0Props, setgrid1Props, setgrid2Props, setgrid3Props };
-  const setGridPropsId = [setgrid0Props, setgrid1Props, setgrid2Props, setgrid3Props];
+  const gridRefs = [grid0, grid1, grid2, grid3];
 
   const handleGridClick = (index) => {
     setSelectedIndex(index);
-    setRotationVal(Number(gridPropsId[index].angle));
-    setZoomVal(Number(gridPropsId[index].zoom));
-    setHorizontalVal(Number(gridPropsId[index].horizontal));
-    setVerticalVal(Number(gridPropsId[index].vertical));
-
-    //onclick of image, load its props into sliders.
-    // do I need the mapping object?
-    // can i do it with index?
   };
 
   const makeGridHandles = (index) => {
@@ -84,19 +88,27 @@ const CanvasHandles = ({ collageStyle, images }) => {
     }
   };
 
+  const handleStyle = (style, index) => {
+    const angle = gridProps[index]["angle"];
+    const zoom = gridProps[index]["zoom"];
+    const horizontal = gridProps[index]["horizontal"];
+    const vertical = gridProps[index]["vertical"];
+    const newStyle = {
+      ...style,
+      transform: `rotate(${angle}deg) scale(${zoom}) translateX(${horizontal}px) translateY(${vertical}px)`,
+    };
+    return newStyle;
+  };
+
   const makeGrids = (images) => {
-    // conditional rendering of handles logic (index) => handles(position)
-    // helper function (i) => div(ref, onclick)
-    return gridsId.map((grid, index) => {
+    return gridProps.map((_grid, index) => {
       let style = { backgroundColor: gridsColor };
-      // if (selectedIndex === index) style = { ...style, border: "3px solid rgb(29, 204, 102)" };
       if (selectedIndex === index)
         style = { ...style, boxShadow: "0px 0px 0px 3px rgb(29, 204, 102)" };
-
       return (
         <div
           className={`CanvasHandles--item ${index}`}
-          ref={gridsId[index]}
+          ref={gridRefs[index]}
           key={String(images[index])}
         >
           <div className={`item-contained`} style={style} onClick={() => handleGridClick(index)}>
@@ -104,9 +116,7 @@ const CanvasHandles = ({ collageStyle, images }) => {
               className="contained-img"
               src={images[index] ? String(images[index]) : ""}
               alt={images[index] ? String(images[index]) : ""}
-              style={{
-                transform: `rotate(${gridPropsId[index].angle}deg) scale(${gridPropsId[index].zoom}) translateX(${gridPropsId[index].horizontal}px) translateY(${gridPropsId[index].vertical}px)`,
-              }}
+              style={handleStyle({}, index)}
             />
           </div>
           {makeGridHandles(index)}
@@ -116,29 +126,23 @@ const CanvasHandles = ({ collageStyle, images }) => {
   };
 
   // Setup state for sliders
-  const [rotationVal, setRotationVal] = useState(0);
-  const [zoomVal, setZoomVal] = useState(1);
-  const [horizontalVal, setHorizontalVal] = useState(0);
-  const [verticalVal, setVerticalVal] = useState(0);
-
-  const sliderVals = { rotationVal, zoomVal, horizontalVal, verticalVal };
-  const sliderSetVals = { setRotationVal, setZoomVal, setHorizontalVal, setVerticalVal };
-
-  const canvasRef = useRef();
-
+  const [backgroundColor, setBackgroundColor] = useState("#000000");
   const [gridsColor, setGridsColor] = useState("#000000");
 
   return (
     <div className="CanvasHandles">
-      <div className="CanvasHandles--container" ref={canvasRef} style={collageStyle}>
+      <div
+        className="CanvasHandles--container"
+        style={{ ...collageStyle, backgroundColor: backgroundColor }}
+      >
         {makeGrids(images)}
       </div>
+      {JSON.stringify(gridProps)}
       <CanvasOptionsPanelIndex
-        canvasRef={canvasRef}
-        sliderVals={sliderVals}
-        sliderSetVals={sliderSetVals}
         selectedIndex={selectedIndex}
-        setGridPropsId={setGridPropsId}
+        gridProps={gridProps}
+        setGridFeature={setGridFeature}
+        setBackgroundColor={setBackgroundColor}
         setGridsColor={setGridsColor}
       ></CanvasOptionsPanelIndex>
     </div>
