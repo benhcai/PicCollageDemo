@@ -88,6 +88,7 @@ const ImagePicker = (props) => {
           </div>
         </div>
         <Button
+          className="select-option"
           onClick={() => {
             setChosenImages("example");
           }}
@@ -119,6 +120,7 @@ const ImagePicker = (props) => {
           </div>
         </div>
         <Button
+          className="select-option"
           onClick={() => {
             setChosenImages("custom");
           }}

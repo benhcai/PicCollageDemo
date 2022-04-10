@@ -36,7 +36,7 @@ const CanvasHandles = ({ collageStyle, images }) => {
   };
 
   // Setup Refs for each grid. These will be used to do handle calculations for grid resizing.
-  const gridRefsMemo = useMemo(() => {
+  const gridRefs = useMemo(() => {
     return gridProps.map(() => React.createRef());
   }, [gridProps]);
 
@@ -48,16 +48,16 @@ const CanvasHandles = ({ collageStyle, images }) => {
             className="handle handle-left"
             onMouseDown={(e) => {
               // handleMouseDownLeft(e, grids);
-              handleMouseDownLeft(e, gridRefsMemo);
+              handleMouseDownLeft(e, gridRefs);
             }}
           ></div>
           <div
             className="handle handle-leftright"
-            onMouseDown={(e) => handleMouseDownLeftRight(e, gridRefsMemo)}
+            onMouseDown={(e) => handleMouseDownLeftRight(e, gridRefs)}
           ></div>
           <div
             className="handle handle-bottom"
-            onMouseDown={(e) => handleMouseDownBottom(e, gridRefsMemo)}
+            onMouseDown={(e) => handleMouseDownBottom(e, gridRefs)}
           ></div>
         </Fragment>
       );
@@ -67,7 +67,7 @@ const CanvasHandles = ({ collageStyle, images }) => {
         <Fragment>
           <div
             className="handle handle-right"
-            onMouseDown={(e) => handleMouseDownRight(e, gridRefsMemo)}
+            onMouseDown={(e) => handleMouseDownRight(e, gridRefs)}
           ></div>
         </Fragment>
       );
@@ -98,7 +98,7 @@ const CanvasHandles = ({ collageStyle, images }) => {
       return (
         <div
           className={`CanvasHandles--item ${index}`}
-          ref={gridRefsMemo[index]}
+          ref={gridRefs[index]}
           key={String(images[index])}
         >
           <div className={`item-contained`} style={style} onClick={() => handleGridClick(index)}>

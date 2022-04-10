@@ -1,21 +1,23 @@
 .ImagePicker {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .ImagePicker--layout {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 0.5rem;
+  gap: 0.8rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .ImagePicker--form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
 .ImagePicker-image-containers {
@@ -30,4 +32,8 @@
   height: auto;
   object-fit: cover;
   transform: scale(1.05);
+}
+
+.select-option {
+  margin-top: 0.4rem;
 }

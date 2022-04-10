@@ -4,6 +4,7 @@ const Button = (props) => {
   return (
     <button
       className={`
+          ${props.className}
           button ${props.active ? "button--active" : ""} 
           ${props.allowed === false ? "button--not-allowed" : ""}
         `}

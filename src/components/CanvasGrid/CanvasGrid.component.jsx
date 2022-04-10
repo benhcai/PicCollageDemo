@@ -27,7 +27,6 @@ const Canvas = (props) => {
   // Handle grid resizing
   const handleMouseMove = useCallback(
     (e) => {
-      console.log(activeIndex);
       if (activeIndex === 0) {
         makeLinkedProperty(e, grid2, "width");
         makeLinkedProperty(e, grid1, "height");
