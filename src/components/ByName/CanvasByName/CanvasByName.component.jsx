@@ -1,7 +1,7 @@
-import "./CanvasByGrid.styles.css";
+import "./CanvasByName.styles.css";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { makeLinkedProperty, generateImagesOptionsV2 } from "./helpers/canvas.helpers";
-import CanvasOptionsPanel from "../CanvasOptionsPanelByGrid/CanvasOptionsPanelByGrid.component";
+import CanvasOptionsPanel from "../../ByName/CanvasOptionsPanelByName/CanvasOptionsPanelByName.component";
 
 const Canvas = (props) => {
   // Setup references to each image in the grid

@@ -1,66 +1,50 @@
-import "./CanvasOptionsPanelByGrid.styles.css";
-import Slider from "../Slider/Slider.component";
-import NumberForm from "../NumberForm/NumberForm.component";
-import { useEffect, useState } from "react";
-import setSelectedAngle from "../CanvasByGrid/helpers/setSelectedAngle";
-import setSelectedZoom from "../CanvasByGrid/helpers/setSelectedZoom";
-import setSelectedHorizontal from "../CanvasByGrid/helpers/setSelectedHorizontal";
-import setSelectedVertical from "../CanvasByGrid/helpers/setSelectedVertical";
-import ColorPicker from "../ColorPicker/ColorPicker.component";
+import "./CanvasOptionsPanelByIndex.styles.css";
+import Slider from "../../Slider/Slider.component";
+import ColorPicker from "../../ColorPicker/ColorPicker.component";
+import NumberForm from "../../NumberForm/NumberForm.component";
 
 const CanvasOptionsPanel = ({
-  selectedGrid,
-  grids,
-  setGridProps,
-  canvasRef,
-  sliderVals,
-  sliderSetVals,
+  selectedIndex,
+  gridProps,
+  setGridFeature,
+  setGridsColor,
+  setBackgroundColor,
 }) => {
   // Handle Rotation slide
-  // const [rotationVal, setRotationVal] = useState(0);
   const handleRotationChange = (val) => {
-    setSelectedAngle(val, selectedGrid, grids, setGridProps);
-    sliderSetVals.setRotationVal(val);
+    setGridFeature("angle", val);
   };
 
   // Handle Zoom slider
-  // const [zoomVal, setZoomVal] = useState(1);
   const handleZoomChange = (val) => {
-    setSelectedZoom(val, selectedGrid, grids, setGridProps);
-    sliderSetVals.setZoomVal(val);
+    setGridFeature("zoom", val);
   };
 
   // Handle Horizontal slider
-  // const [horizontalVal, setHorizontalVal] = useState(1);
   const handleHorizontalChange = (val) => {
-    setSelectedHorizontal(val, selectedGrid, grids, setGridProps);
-    sliderSetVals.setHorizontalVal(val);
+    setGridFeature("horizontal", val);
   };
 
   // Handle Vertical slider
-  // const [verticalVal, setVerticalVal] = useState(1);
   const handleVerticalChange = (val) => {
-    setSelectedVertical(val, selectedGrid, grids, setGridProps);
-    sliderSetVals.setVerticalVal(val);
+    setGridFeature("vertical", val);
   };
 
   // Handle Color Picker
-  const handleFormChange = (color) => {
-    canvasRef.current.style.backgroundColor = `${color}`;
+  const handleColorChange = (color) => {
+    setBackgroundColor(color);
   };
 
-  const handleFormSubmit = (color) => {
-    canvasRef.current.style.backgroundColor = `${color}`;
+  const handleGridsColorChange = (color) => {
+    setGridsColor(color);
   };
-
-  // console.log(rotationVal);
 
   return (
     <div className="CanvasOptionsPanel">
       <div className="canvas-options">
         <div>Rotate Image:</div>
         <Slider
-          value={sliderVals.rotationVal}
+          value={gridProps[selectedIndex]["angle"]}
           onChange={handleRotationChange}
           min={-360}
           max={360}
@@ -68,7 +52,7 @@ const CanvasOptionsPanel = ({
           className={"options-slider"}
         />
         <NumberForm
-          value={sliderVals.rotationVal}
+          value={gridProps[selectedIndex]["angle"]}
           onChange={handleRotationChange}
           min={-360}
           max={360}
@@ -78,7 +62,7 @@ const CanvasOptionsPanel = ({
       <div className="canvas-options">
         <div>Zoom Image:</div>
         <Slider
-          value={sliderVals.zoomVal}
+          value={gridProps[selectedIndex]["zoom"]}
           onChange={handleZoomChange}
           min={0.1}
           max={10}
@@ -86,7 +70,7 @@ const CanvasOptionsPanel = ({
           className={"options-slider"}
         ></Slider>
         <NumberForm
-          value={sliderVals.zoomVal}
+          value={gridProps[selectedIndex]["zoom"]}
           onChange={handleZoomChange}
           min={0.1}
           max={10}
@@ -96,7 +80,7 @@ const CanvasOptionsPanel = ({
       <div className="canvas-options">
         <div>Horizontal Position:</div>
         <Slider
-          value={sliderVals.horizontalVal}
+          value={gridProps[selectedIndex]["horizontal"]}
           onChange={handleHorizontalChange}
           min={-500}
           max={500}
@@ -104,7 +88,7 @@ const CanvasOptionsPanel = ({
           className={"options-slider"}
         ></Slider>
         <NumberForm
-          value={sliderVals.horizontalVal}
+          value={gridProps[selectedIndex]["horizontal"]}
           onChange={handleHorizontalChange}
           min={-500}
           max={500}
@@ -114,7 +98,7 @@ const CanvasOptionsPanel = ({
       <div className="canvas-options">
         <div>Vertical Position:</div>
         <Slider
-          value={sliderVals.verticalVal}
+          value={gridProps[selectedIndex]["vertical"]}
           onChange={handleVerticalChange}
           min={-500}
           max={500}
@@ -122,14 +106,23 @@ const CanvasOptionsPanel = ({
           className={"options-slider"}
         ></Slider>
         <NumberForm
-          value={sliderVals.verticalVal}
+          value={gridProps[selectedIndex]["vertical"]}
           onChange={handleVerticalChange}
           min={-500}
           max={500}
           step={1}
         ></NumberForm>
       </div>
-      <ColorPicker onChange={handleFormChange} onSubmit={handleFormSubmit}></ColorPicker>
+      <ColorPicker
+        label={"Background Color: "}
+        onChange={handleColorChange}
+        className={"canvas-options"}
+      ></ColorPicker>
+      <ColorPicker
+        label={"Grid Color: "}
+        onChange={handleGridsColorChange}
+        className={"canvas-options"}
+      ></ColorPicker>
     </div>
   );
 };

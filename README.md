@@ -10,7 +10,7 @@ Live demo: https://bit.ly/benjamin-cai-pic-collage-demo
 
 1. Download and extract zip file for this repository from Github
 2. In your shell application, change directory to the extracted folder
-3. Run "npm install" to setup the application
+3. Run "npm install" to set up the application
 4. Run "npm start" to start the application
 
 # Introduction to Project
@@ -19,7 +19,7 @@ This application is built with the React framework and relies on React's client-
 
 Below outlines my approach and thought process for this assignment.
 
-## Approach
+### Approach
 
 1. Clarify and outline task, scope, and requirements.
 2. Draft technical implementation of core features
@@ -30,7 +30,7 @@ Below outlines my approach and thought process for this assignment.
 
 [see my project analysis details]
 
-## Practical Steps
+### Practical Steps
 
 1. Play around with app to understand its features and UI interactions.
 2. Determine the core "wish list" of features to be implemented
@@ -41,7 +41,7 @@ Below outlines my approach and thought process for this assignment.
 
 [see my project analysis details]
 
-## Technical Implementation Steps
+### Technical Implementation Steps
 
 Language (frameworks):
 
@@ -79,21 +79,23 @@ This component houses the `Collage Layout` component and `Canvas`. For this demo
 
 ## Feature Components
 
-### `CanvasIndex`
+The `Canvas` is split into two versions. The old version found in "/ByName/`CanvasByName`" relies on grid id names to reference the grid objects. Its functions consequently rely on these id names. Moreover, the resizing equation is based on the CSS _resize_ property. The new `Canvas` (/ByIndex/`CanvasByIndex`) is based on the value of the grids' indexes and is thus easier to scale. However, it relies on the assumption that the order of the grid elements is irrelevant. Additionally, it uses handles that execute javascript that manually set the widths and heights of the grids. The new canvas results in less visual bugs. Similar paths were taken for the `GridOptionsPanel`.
 
-The new `Canvas` component. `CanvasIndex` utilises array _index_ to facilitate a more scalable solution. Its function is to handle the rendering and styling of the images on the grid. It houses the grid resizing feature. It is the parent to the `CanvasOptionsPanel` child component and passes the grids' properties and grid state setting functions to said child. [todo]
+### `CanvasByIndex`
 
-### `CanvasOptionsPanelIndex`
+The new `Canvas` component. `CanvasByIndex` utilises array _index_ to facilitate a more scalable solution. Its function is to handle the rendering and styling of the images on the grid. It houses the grid resizing feature. It is the parent to the `CanvasOptionsPanel` child component and passes the grids' properties and grid state setting functions to said child. [todo]
+
+### `CanvasOptionsPanelByIndex`
 
 The new `CanvasOptionsPanel`. It is used to contain the `Slider` components. The `Sliders` control the properties of each grid based on the index of the selected grid item. Grid properties include rotation, zoom, horizontal position, and vertical position. [todo]
 
 ## Previous Component Implementations
 
-### `CanvasGrid`
+### `CanvasByName`
 
 The old `Canvas` implementation. Based on "id" names given to each grid and conditional. [todo]
 
-### `CanvasOptionsPanelGrid`
+### `CanvasOptionsPanelByName`
 
 Old Options Panel component. Similarly, based on grid "id" names.
 
@@ -120,6 +122,7 @@ Contains images used in example case.
 - [ ] Move image by dragging image (imageRefs? state + style?)
 - [ ] Implement testing
 - [ ] Define types
+- [ ] Fix repetitive `Canvas` documentatiopn
 
 Future Updates:
 

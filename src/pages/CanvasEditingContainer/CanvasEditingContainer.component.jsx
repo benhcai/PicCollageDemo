@@ -1,6 +1,6 @@
 import "./CanvasEditingContainer.styles.css";
-import CanvasGrid from "../../components/CanvasByGrid/CanvasByGrid.component";
-import CanvasHandlesEdit from "../../components/CanvasByIndex/CanvasByIndex.component";
+import CanvasByName from "../../components/ByName/CanvasByName/CanvasByName.component";
+import CanvasByIndex from "../../components/ByIndex/CanvasByIndex/CanvasByIndex.component";
 import Button from "../../components/Button/Button.component";
 import ButtonGroup from "../../components/Button/ButtonGroup/ButtonGroup.component";
 import { useState, useEffect } from "react";
@@ -40,9 +40,9 @@ const CanvasEditingContainer = ({ chosenImages }) => {
 
   const generateCanvas = () => {
     if (canvasEditor === "old")
-      return <CanvasGrid images={imagesLimited} collageStyle={collageStyle} />;
+      return <CanvasByName images={imagesLimited} collageStyle={collageStyle} />;
     if (canvasEditor === "new")
-      return <CanvasHandlesEdit images={imagesLimited} collageStyle={collageStyle} />;
+      return <CanvasByIndex images={imagesLimited} collageStyle={collageStyle} />;
   };
 
   return (
