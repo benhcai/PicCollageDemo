@@ -1,4 +1,4 @@
-import "./CanvasOptionsPanelIndex.styles.css";
+import "./CanvasOptionsPanelByIndex.styles.css";
 import Slider from "../Slider/Slider.component";
 import ColorPicker from "../ColorPicker/ColorPicker.component";
 import NumberForm from "../NumberForm/NumberForm.component";

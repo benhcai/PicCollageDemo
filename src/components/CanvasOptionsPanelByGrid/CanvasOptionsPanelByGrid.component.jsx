@@ -1,11 +1,11 @@
-import "./CanvasOptionsPanelGrid.styles.css";
+import "./CanvasOptionsPanelByGrid.styles.css";
 import Slider from "../Slider/Slider.component";
 import NumberForm from "../NumberForm/NumberForm.component";
 import { useEffect, useState } from "react";
-import setSelectedAngle from "../CanvasGrid/helpers/setSelectedAngle";
-import setSelectedZoom from "../CanvasGrid/helpers/setSelectedZoom";
-import setSelectedHorizontal from "../CanvasGrid/helpers/setSelectedHorizontal";
-import setSelectedVertical from "../CanvasGrid/helpers/setSelectedVertical";
+import setSelectedAngle from "../CanvasByGrid/helpers/setSelectedAngle";
+import setSelectedZoom from "../CanvasByGrid/helpers/setSelectedZoom";
+import setSelectedHorizontal from "../CanvasByGrid/helpers/setSelectedHorizontal";
+import setSelectedVertical from "../CanvasByGrid/helpers/setSelectedVertical";
 import ColorPicker from "../ColorPicker/ColorPicker.component";
 
 const CanvasOptionsPanel = ({

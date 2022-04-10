@@ -1,6 +1,6 @@
 import "./CanvasEditingContainer.styles.css";
-import CanvasGrid from "../../components/CanvasGrid/CanvasGrid.component";
-import CanvasHandlesEdit from "../../components/CanvasIndex/CanvasIndex.component";
+import CanvasGrid from "../../components/CanvasByGrid/CanvasByGrid.component";
+import CanvasHandlesEdit from "../../components/CanvasByIndex/CanvasByIndex.component";
 import Button from "../../components/Button/Button.component";
 import ButtonGroup from "../../components/Button/ButtonGroup/ButtonGroup.component";
 import { useState, useEffect } from "react";

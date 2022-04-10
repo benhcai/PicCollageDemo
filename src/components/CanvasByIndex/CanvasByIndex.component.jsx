@@ -1,10 +1,10 @@
-import "./CanvasIndex.styles.css";
+import "./CanvasByIndex.styles.css";
 import React, { useMemo, useRef, useState, Fragment } from "react";
 import { handleMouseDownLeft } from "./helpers/handleMouseDownLeft";
 import { handleMouseDownLeftRight } from "./helpers/handleMouseDownLeftRight";
 import { handleMouseDownRight } from "./helpers/handleMouseDownRight";
 import { handleMouseDownBottom } from "./helpers/handleMouseDownBottom";
-import CanvasOptionsPanelIndex from "../CanvasOptionsPanelIndex/CanvasOptionsPanelIndex.component";
+import CanvasOptionsPanelIndex from "../CanvasOptionsPanelByIndex/CanvasOptionsPanelByIndex.component";
 
 // This is the updated Canvas element. Instead of referencing properties based on ref name, we use index.
 // This assumes the order in the image array is consistent or irrelevant (solvable).
