@@ -122,7 +122,8 @@ Contains images used in example case.
 - [ ] Move image by dragging image (imageRefs? state + style?)
 - [ ] Implement testing
 - [ ] Define types
-- [ ] Fix repetitive `Canvas` documentatiopn
+- [ ] Fix repetitive `Canvas` documentation
+- [ ] Include images in Readme file
 
 Future Updates:
 
