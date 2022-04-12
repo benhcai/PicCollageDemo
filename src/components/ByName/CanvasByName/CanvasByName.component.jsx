@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { makeLinkedProperty, generateImagesOptionsV2 } from "./helpers/canvas.helpers";
 import CanvasOptionsPanel from "../../ByName/CanvasOptionsPanelByName/CanvasOptionsPanelByName.component";
 
-const Canvas = (props) => {
+const CanvasByName = (props) => {
   // Setup references to each image in the grid
   const grid0 = useRef();
   const grid1 = useRef();
@@ -67,8 +67,6 @@ const Canvas = (props) => {
   const [selectedGrid, setSelectedGrid] = useState();
 
   const handleClick = (index, ref) => {
-    // setSelectedGrid(ref);
-    // Allow for re-setting the sliders to correct (current grid item prop values) when clicking on a different image
     setRotationVal(gridPropsMap[ref.id].angle);
     setZoomVal(gridPropsMap[ref.id].zoom);
     setHorizontalVal(gridPropsMap[ref.id].horizontal);
@@ -88,7 +86,7 @@ const Canvas = (props) => {
       return (
         <div
           className={`image-container ${selected ? "selected-grid" : ""} `}
-          key={String(image)}
+          key={index}
           ref={currentRef}
           onMouseDown={() => handleMouseDown(index, currentRef)}
           onClick={() => handleClick(index, currentRef)}
@@ -106,7 +104,6 @@ const Canvas = (props) => {
     });
   };
 
-  // Figure out a way to create these iteratively.
   // Setup grid item state
 
   const initialPropState = { angle: 0, zoom: 1, horizontal: 0, vertical: 0 };
@@ -154,4 +151,4 @@ const Canvas = (props) => {
   );
 };
 
-export default Canvas;
+export default CanvasByName;

@@ -55,9 +55,7 @@ const ImagePicker = (props) => {
   const [formValue, setFormValue] = useState(
     "https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__340.jpg"
   );
-  const [formValueCustom, setFormValueCustom] = useState(
-    "https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__340.jpg"
-  );
+  const [formValueCustom, setFormValueCustom] = useState("https://picsum.photos/400");
 
   return (
     <div className="ImagePicker">
@@ -66,16 +64,14 @@ const ImagePicker = (props) => {
           className="images-options-container"
           style={chosenImages === "custom" ? { opacity: "0.5" } : {}}
         >
-          <h2 style={chosenImages === "example" ? { color: "green" } : {}}>
-            Image Picker (example)
-          </h2>
+          <h2>Image Picker - Example</h2>
           <div className="ImagePicker--layout">
             {renderImages(imagesExample)}
             {loading === true && chosenImages === "example" ? "Loading..." : ""}
           </div>
           <div className="ImagePicker--form">
             {imagesExample.length < 4 ? "Fetch image from URL " : ""}
-            <form className="ImagePicker--form">
+            <form onSubmit={(e) => e.preventDefault()}>
               <input
                 type="text"
                 value={formValue}
@@ -101,13 +97,13 @@ const ImagePicker = (props) => {
           className="images-options-container"
           style={chosenImages === "example" ? { opacity: "0.5" } : {}}
         >
-          <h2 style={chosenImages === "custom" ? { color: "green" } : {}}>Image Picker (custom)</h2>
+          <h2>Image Picker - Custom</h2>
           <div className="ImagePicker--layout">
             {renderImages(imagesCustom)}
             {loading === true && chosenImages === "custom" ? "Loading..." : ""}
           </div>
           <div className="ImagePicker--form">
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
               <input
                 type="text"
                 value={formValueCustom}

@@ -79,7 +79,11 @@ This component houses the `Collage Layout` component and `Canvas`. For this demo
 
 ## Feature Components
 
-The `Canvas` is split into two versions. The old version found in "/ByName/`CanvasByName`" relies on grid id names to reference the grid objects. Its functions consequently rely on these id names. Moreover, the resizing equation is based on the CSS _resize_ property. The new `Canvas` (/ByIndex/`CanvasByIndex`) is based on the value of the grids' indexes and is thus easier to scale. However, it relies on the assumption that the order of the grid elements is irrelevant. Additionally, it uses handles that execute javascript that manually set the widths and heights of the grids. The new canvas results in less visual bugs. Similar paths were taken for the `GridOptionsPanel`.
+The `Canvas` is split into two versions. The old version, found in "/ByName/`CanvasByName`", handles resizing by dragging the bottom-right corner on each grid. The resizing equation is based on the CSS _resize_ property. While it facilitates quicker resizing, using CSS to handle changes in width and height resulted in some visual bugs. Moreover, it relies on grid id names to reference the grid objects and its functions subsequently rely on these id names, this leads to difficulty scaling when implementing more _collage styles_.
+
+The new `Canvas` (/ByIndex/`CanvasByIndex`) implemements "handles" to adjust the grids sizing. Upon dragging the handles, event listeners and javascript are used manually set the widths and heights, the resulti is a more fluid user experience. The functions instead rely on the indexes of the grids and is thus easier to scale. However, it relies on the assumption that the order of the grid elements is irrelevant. As the new canvas results in less visual bugs, it is the preferred options going forward.
+
+Similar design decisions were taken for the `GridOptionsPanel` resulting in its name and index versions.
 
 ### `CanvasByIndex`
 

@@ -19,9 +19,9 @@ const ButtonGroup = (props) => {
         id={index}
         onClick={() => handleOnClick(index, button.props.onClick)}
         active={index === active ? true : false}
-        allowed={button.props.allowed}
+        allowed={button?.props?.allowed}
       >
-        {button.props.children}
+        {button?.props?.children}
       </Button>
     );
   });

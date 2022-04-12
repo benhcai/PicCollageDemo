@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  max-width: 100%;
+  margin-top: 1rem;
 }
 
 .ImagePicker--layout {
@@ -21,7 +23,7 @@
 }
 
 .ImagePicker-image-containers {
-  border: 3px solid rgb(103, 113, 228);
+  border: 3px solid var(--border-color---primary);
   border-radius: 8px;
   overflow: hidden;
 }

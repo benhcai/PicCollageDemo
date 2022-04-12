@@ -10,21 +10,24 @@
   background-color: green;
 }
 
-.CanvasHandles--container {
+.CanvasByIndex {
   display: grid;
-  /* grid-auto-flow: row;
-  grid-template-columns: auto auto; */
+  grid-template-rows: repeat(3, auto);
+  width: 100%;
+}
+
+.CanvasByIndex--container {
+  display: grid;
   gap: 10px;
   justify-content: center;
-  /* width: 500px; */
-  /* max-width: 600px; */
   max-width: 80%;
   background-color: rgb(47, 47, 50);
   border-radius: 6px;
   padding: var(--gap-size);
+  justify-self: center;
 }
 
-.CanvasHandles--item {
+.CanvasByIndex--item {
   cursor: pointer;
   position: relative;
   width: 200px;
@@ -32,14 +35,14 @@
   min-width: 50px;
 }
 
-.contained-img {
+.CanvasByIndex--contained-image {
   /* max-width: 100%; */
   height: 100%;
   object-fit: contain;
   user-select: none;
 }
 
-.item-contained {
+.CanvasByIndex--image-container {
   border-radius: 4px;
   height: 100%;
   overflow: hidden;
@@ -94,4 +97,12 @@
   right: 0;
   right: -30px;
   cursor: pointer;
+}
+
+.CanvasByIndex---hidden {
+  visibility: hidden;
+}
+
+.button--toggle-editing {
+  margin-bottom: 0.4rem;
 }
