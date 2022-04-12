@@ -81,17 +81,17 @@ This component houses the `Collage Layout` component and `Canvas`. For this demo
 
 The `Canvas` is split into two versions. The old version, found in "/ByName/`CanvasByName`", handles resizing by dragging the bottom-right corner on each grid. The resizing equation is based on the CSS _resize_ property. While it facilitates quicker resizing, using CSS to handle changes in width and height resulted in some visual bugs. Moreover, it relies on grid id names to reference the grid objects and its functions subsequently rely on these id names, this leads to difficulty scaling when implementing more _collage styles_.
 
-The new `Canvas` (/ByIndex/`CanvasByIndex`) implemements "handles" to adjust the grids sizing. Upon dragging the handles, event listeners and javascript are used manually set the widths and heights, the resulti is a more fluid user experience. The functions instead rely on the indexes of the grids and is thus easier to scale. However, it relies on the assumption that the order of the grid elements is irrelevant. As the new canvas results in less visual bugs, it is the preferred options going forward.
+The new `Canvas` (/ByIndex/`CanvasByIndex`) implemements "handles" to adjust the grids' sizing. Upon dragging the handles, event listeners and javascript are used to manually set the widths and heights of the grid, the result is a more fluid user experience. The functions instead rely on the indexes of the grids and thus would scale better when implementing additional _collage styles_. However, this method relies on the assumption that the order of the grid elements is irrelevant. As the new canvas results in less visual bugs, it is the preferred options going forward.
 
 Similar design decisions were taken for the `GridOptionsPanel` resulting in its name and index versions.
 
 ### `CanvasByIndex`
 
-The new `Canvas` component. `CanvasByIndex` utilises array _index_ to facilitate a more scalable solution. Its function is to handle the rendering and styling of the images on the grid. It houses the grid resizing feature. It is the parent to the `CanvasOptionsPanel` child component and passes the grids' properties and grid state setting functions to said child. [todo]
+The new `Canvas` component. `CanvasByIndex` utilises array _index_ to facilitate a more scalable solution. Its function is to handle the rendering and styling of the images on the grid. It houses the grid resizing feature. It is the parent to the `CanvasOptionsPanel` child component and passes the grids' properties and grid state setting functions to said child.
 
 ### `CanvasOptionsPanelByIndex`
 
-The new `CanvasOptionsPanel`. It is used to contain the `Slider` components. The `Sliders` control the properties of each grid based on the index of the selected grid item. Grid properties include rotation, zoom, horizontal position, and vertical position. [todo]
+The new `CanvasOptionsPanel`. It is used to contain the `Slider` components. The `Sliders` control the properties of each grid based on the index of the selected grid item. Grid properties include rotation, zoom, horizontal position, and vertical position.
 
 ## Previous Component Implementations
 
@@ -107,13 +107,23 @@ Old Options Panel component. Similarly, based on grid "id" names.
 
 ### `Slider`
 
-### `Button`
+Used to set the rotation, zoom, horizontal and veritcal values of the grid images.
+
+### `NumberForm`
+
+Follow the value of the slider and provide more minute control.
 
 ### `ButtonGroup`
 
+House groups of buttons so that only one in the group is active at any given moment.
+
+### `Button`
+
+Wrapper for HTML button element with styling.
+
 ### `ColorPicker`
 
-### `NumberForm`
+Handle the choosing of background and grid colors.
 
 ## Resources
 
