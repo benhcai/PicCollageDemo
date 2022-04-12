@@ -10,27 +10,22 @@ const CanvasOptionsPanel = ({
   setGridsColor,
   setBackgroundColor,
 }) => {
-  // Handle Rotation slide
   const handleRotationChange = (val) => {
     setGridFeature("angle", val);
   };
 
-  // Handle Zoom slider
   const handleZoomChange = (val) => {
     setGridFeature("zoom", val);
   };
 
-  // Handle Horizontal slider
   const handleHorizontalChange = (val) => {
     setGridFeature("horizontal", val);
   };
 
-  // Handle Vertical slider
   const handleVerticalChange = (val) => {
     setGridFeature("vertical", val);
   };
 
-  // Handle Color Picker
   const handleColorChange = (color) => {
     setBackgroundColor(color);
   };
