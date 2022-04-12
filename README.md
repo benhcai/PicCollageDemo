@@ -121,13 +121,10 @@ Contains images used in example case.
 
 #### Current Todo:
 
-- [ ] Improve overall UI
-- [ ] Decide useMemo vs useRef.current for Ref array optimization
-- [ ] Move image by dragging image (imageRefs? state + style?)
+- [ ] Fix repetitive `Canvas` documentation
+- [ ] Move image by dragging image (imageRefs vs state + style)
 - [ ] Implement testing
 - [ ] Define types
-- [ ] Fix repetitive `Canvas` documentation
-- [ ] Include images in Readme file
 
 Future Updates:
 
@@ -149,3 +146,5 @@ Recently Completed:
 - [x] Refactor for DRY code
 - [x] Grid backgrounds
 - [x] Improve Image Picker UI
+- [x] Improve overall UI
+- [x] Decide useMemo vs useRef.current for Ref array optimization

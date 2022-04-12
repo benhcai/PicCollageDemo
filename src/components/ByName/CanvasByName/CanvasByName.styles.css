@@ -42,7 +42,6 @@
 
 .grid-image {
   height: 100%;
-  border-radius: 6px;
   object-fit: contain;
   pointer-events: none;
 }
