@@ -97,7 +97,7 @@ The new `CanvasOptionsPanel`. It is used to contain the `Slider` components. The
 
 ### `CanvasByName`
 
-The old `Canvas` implementation. Based on "id" names given to each grid and conditional. [todo]
+The old `Canvas` implementation. Based on "id" names given to each grid and conditional.
 
 ### `CanvasOptionsPanelByName`
 
