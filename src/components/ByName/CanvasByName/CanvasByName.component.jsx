@@ -66,7 +66,7 @@ const CanvasByName = (props) => {
   // Handle when the user clicks on a grid elemeent
   const [selectedGrid, setSelectedGrid] = useState();
 
-  const handleClick = (index, ref) => {
+  const handleClick = (_index, ref) => {
     setRotationVal(gridPropsMap[ref.id].angle);
     setZoomVal(gridPropsMap[ref.id].zoom);
     setHorizontalVal(gridPropsMap[ref.id].horizontal);

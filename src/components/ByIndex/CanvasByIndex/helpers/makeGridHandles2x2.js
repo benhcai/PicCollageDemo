@@ -10,10 +10,7 @@ export const makeGridHandles2x2 = (index, gridRefs) => {
       <Fragment>
         <div
           className="handle handle-left"
-          onMouseDown={(e) => {
-            // handleMouseDownLeft(e, grids);
-            handleMouseDownLeft(e, gridRefs);
-          }}
+          onMouseDown={(e) => handleMouseDownLeft(e, gridRefs)}
         ></div>
         <div
           className="handle handle-leftright"

@@ -9,14 +9,12 @@ import { makeGridHandles2x2 } from "./helpers/makeGridHandles2x2";
 // This assumes the order in the image array is consistent or irrelevant (solvable).
 
 const CanvasByIndex = ({ collageStyle, images }) => {
-  // Setup grid state store for sliders. Store state array in useState and reference items by index.
   const [selectedIndex, setSelectedIndex] = useState(0);
   const gridElements = 4;
   const initialGridProperties = { angle: 0, zoom: 1, horizontal: 0, vertical: 0 };
   const [gridProps, setGridProps] = useState(makeGridState(gridElements, initialGridProperties));
   const setGridFeatureConfigured = setGridFeatureFactory(setGridProps, selectedIndex);
 
-  // Setup Refs for each grid. These will be used to do handle calculations for grid resizing. useMemo is for improved optimizations.
   const gridRefs = useMemo(() => {
     return gridProps.map(() => React.createRef());
   }, [gridProps]);
